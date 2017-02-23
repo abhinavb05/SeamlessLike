@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "737388313939",
+    "firebase_url": "https://seeamless.firebaseio.com",
+    "project_id": "seeamless",
+    "storage_bucket": "seeamless.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737388313939:android:1d7357cc59032dc4",
+        "android_client_info": {
+          "package_name": "com.seamless.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737388313939-4a3johoabrf38thef3kiqenlukmiqved.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUGWPlMQ17QCk515WM4EpWYelZqXuXaqg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

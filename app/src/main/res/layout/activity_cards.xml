@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cards"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.abs.seamless.cards"
+    android:weightSum="1">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="181dp"
+        android:layout_weight="0.90">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="109dp"
+                android:layout_height="109dp"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/logo" />
+
+            <TextView
+                android:text="Restaurant Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:id="@+id/title"
+                android:textStyle="normal|bold"
+                android:textSize="20sp"
+                android:layout_marginRight="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:text="Spcl1, Spcl2, Spcl3, Spcl4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:id="@+id/spcl"
+                android:layout_below="@+id/title"
+                android:layout_alignRight="@+id/title"
+                android:layout_alignEnd="@+id/title" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_star_border_black_24dp"
+                android:id="@+id/s1"
+                android:layout_below="@+id/spcl"
+                android:layout_toLeftOf="@+id/title"
+                android:layout_toStartOf="@+id/title" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_star_border_black_24dp"
+                android:layout_below="@+id/spcl"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/s2" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_star_border_black_24dp"
+                android:layout_below="@+id/spcl"
+                android:layout_toRightOf="@+id/s2"
+                android:layout_toEndOf="@+id/s2"
+                android:id="@+id/s3" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_star_border_black_24dp"
+                android:layout_alignBottom="@+id/s3"
+                android:layout_toRightOf="@+id/s3"
+                android:layout_toEndOf="@+id/s3"
+                android:id="@+id/s4" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_star_border_black_24dp"
+                android:layout_alignBottom="@+id/s4"
+                android:layout_toRightOf="@+id/s4"
+                android:layout_toEndOf="@+id/s4"
+                android:id="@+id/s5" />
+
+            <TextView
+                android:text="(64)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rtng"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/spcl"
+                android:layout_toEndOf="@+id/spcl" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_favorite_border_black_24dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/rtng"
+                android:layout_alignEnd="@+id/rtng"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/imageView7" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
