@@ -10,10 +10,10 @@ public class card_data {
     int logo;
     int rtng;
 
-    card_data(String name,String spl,int logo,int rtng){
+    card_data(String name,String spl){
         this.name=name;
-        this.logo=logo;
+        //this.logo=logo;
         this.spl=spl;
-        this.rtng=rtng;
+        //this.rtng=rtng;
     }
 }
