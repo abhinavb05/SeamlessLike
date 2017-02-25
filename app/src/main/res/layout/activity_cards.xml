@@ -20,7 +20,7 @@
                 android:layout_width="109dp"
                 android:layout_height="109dp"
                 android:src="@mipmap/ic_launcher"
-                android:id="@+id/logo" />
+                android:id="@+id/logoi" />
 
             <TextView
                 android:text="Restaurant Name"
@@ -78,7 +78,7 @@
                 android:numStars="5"
                 android:stepSize="1.0"
                 style="?android:attr/ratingBarStyleIndicator"
-                android:layout_alignBottom="@+id/logo"
+                android:layout_alignBottom="@+id/logoi"
                 android:layout_toLeftOf="@+id/textView"
                 android:layout_toStartOf="@+id/textView" />
 

@@ -1,16 +1,12 @@
 package com.example.abs.seamless;
 
-import android.content.Context;
-import android.provider.ContactsContract;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -50,7 +46,7 @@ public class rvadapter extends RecyclerView.Adapter<rvadapter.ViewHolder>{
         public ViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
-            logo = (ImageView)itemView.findViewById(R.id.logo);
+            logo = (ImageView)itemView.findViewById(R.id.logoi);
             title = (TextView)itemView.findViewById(R.id.title);
             spcl = (TextView)itemView.findViewById(R.id.spcl);
         }
