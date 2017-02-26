@@ -16,8 +16,11 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
-        data.add(new card_data("Gulati's","Indian,Curry,Chicken","SA"));
-        data.add(new card_data("Imperfecto","Italian,Continental","FG"));
+        //data.add(new card_data("Gulati's","Indian,Curry,Chicken","SA"));
+        //data.add(new card_data("Imperfecto","Italian,Continental","FG"));
         adapter = new rvadapter(data);
-        rv.setAdapter(adapter);
+        //rv.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +58,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Restaurants").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                    card_data d = noteDataSnapshot.getValue(card_data.class);
+                    data.add(d);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        Toast.makeText(getApplicationContext(), ""+data.size(), Toast.LENGTH_SHORT).show();
+        rv.setAdapter(adapter);
     }
 
     @Override

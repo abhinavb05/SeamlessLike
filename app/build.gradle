@@ -17,6 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions{
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+
+    }
 }
 
 dependencies {
@@ -38,5 +44,6 @@ dependencies {
 
     compile 'com.google.firebase:firebase-database:9.6.0'
     compile 'com.google.firebase:firebase-storage:9.6.0'
+    compile 'com.firebase:firebase-client-android:2.4.0'
 }
 apply plugin: 'com.google.gms.google-services'

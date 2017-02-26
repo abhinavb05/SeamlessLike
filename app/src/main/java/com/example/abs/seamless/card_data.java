@@ -11,7 +11,8 @@ public class card_data {
     public String spl;
     public String logo;
 
-    card_data(String name,String spl,String logo){
+    public card_data(){}
+    public card_data(String logo,String name,String spl){
         this.name=name;
         this.spl=spl;
         this.logo=logo;
