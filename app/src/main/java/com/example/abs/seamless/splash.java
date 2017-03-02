@@ -24,13 +24,12 @@ import java.util.List;
 
 public class splash extends AppCompatActivity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 200;
+    private final int SPLASH_DISPLAY_LENGTH = 2000;
     Animation animation;
     ImageView l;
 
-    List<card_data> data_a;
-
-    DatabaseReference mDatabase;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,40 +37,28 @@ public class splash extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
 
-        data_a = new ArrayList<>();
-
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        /*mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Restaurants").addListenerForSingleValueEvent(new ValueEventListener() {
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Restaurants");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                    card_data d = noteDataSnapshot.getValue(card_data.class);
-                    data_a.add(d);
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    String key = childSnapshot.getKey();
+                    Toast.makeText(getApplicationContext(),""+dataSnapshot.child(key).getValue(),Toast.LENGTH_SHORT).show();
                 }
+                Intent mainIntent = new Intent(splash.this,MainActivity.class);
+                startActivity(mainIntent);
+                finish();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
 
-        Toast.makeText(getApplicationContext(), ""+data_a.size(), Toast.LENGTH_SHORT).show();*/
-
         l=(ImageView)findViewById(R.id.imageView2);
         animation = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.anm);
         l.startAnimation(animation);
-
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                // Create an Intent that will start the Menu-Activity.
-                Intent mainIntent = new Intent(splash.this,MainActivity.class);
-                startActivity(mainIntent);
-                finish();
-            }
-        }, SPLASH_DISPLAY_LENGTH);
     }
 }

@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Toast;
 
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,14 +30,11 @@ public class MainActivity extends AppCompatActivity {
     List<card_data> data;
     rvadapter adapter;
     FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello, World!");*/
 
         data = new ArrayList<>();
         rv = (RecyclerView)findViewById(R.id.rv);
@@ -46,10 +42,13 @@ public class MainActivity extends AppCompatActivity {
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
-        //data.add(new card_data("Gulati's","Indian,Curry,Chicken","SA"));
-        //data.add(new card_data("Imperfecto","Italian,Continental","FG"));
+        data.add(new card_data("Gulati's","Indian,Curry,Chicken","SA.jpg"));
+        data.add(new card_data("Imperfecto","Italian,Continental","FG.jpg"));
+        data.add(new card_data("Berco's","Thai,Chinese","x.jpg"));
+        data.add(new card_data("Pind Balluchi","Punjabi,North Indian","a.jpg"));
+        data.add(new card_data("Raddison BLU","Continental,Italian","d.jpg"));
+        data.add(new card_data("Nandos","Indian","c.jpg"));
         adapter = new rvadapter(data);
-        //rv.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,25 +58,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Restaurants").addValueEventListener(new ValueEventListener() {
+        rv.setAdapter(adapter);
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                    card_data d = noteDataSnapshot.getValue(card_data.class);
-                    data.add(d);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0)
+                    fab.hide();
+                else if (dy < 0)
+                    fab.show();
             }
         });
-
-        Toast.makeText(getApplicationContext(), ""+data.size(), Toast.LENGTH_SHORT).show();
-        rv.setAdapter(adapter);
     }
 
     @Override

@@ -12,7 +12,7 @@ public class card_data {
     public String logo;
 
     public card_data(){}
-    public card_data(String logo,String name,String spl){
+    public card_data(String name,String spl,String logo){
         this.name=name;
         this.spl=spl;
         this.logo=logo;
