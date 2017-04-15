@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     rvadapter adapter;
     FloatingActionButton fab;
 
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,34 +42,38 @@ public class MainActivity extends AppCompatActivity {
         data = new ArrayList<>();
         rv = (RecyclerView)findViewById(R.id.rv);
         fab = (FloatingActionButton)findViewById(R.id.fab);
-        rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
-        data.add(new card_data("Gulati's","Indian,Curry,Chicken","SA.jpg"));
-        data.add(new card_data("Imperfecto","Italian,Continental","FG.jpg"));
-        data.add(new card_data("Berco's","Thai,Chinese","x.jpg"));
-        data.add(new card_data("Pind Balluchi","Punjabi,North Indian","a.jpg"));
-        data.add(new card_data("Raddison BLU","Continental,Italian","d.jpg"));
-        data.add(new card_data("Nandos","Indian","c.jpg"));
-        adapter = new rvadapter(data);
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Restaurants");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                data.clear();
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    String key = childSnapshot.getKey();
+                    String name = dataSnapshot.child(key).child("name").getValue().toString();
+                    String spl = dataSnapshot.child(key).child("spl").getValue().toString();
+                    String lo = dataSnapshot.child(key).child("logo").getValue().toString();
+                    card_data d = new card_data(name,spl,lo);
+                    //Toast.makeText(getApplicationContext(),""+d.name,Toast.LENGTH_SHORT).show();
+                    data.add(d);
+                }
+                adapter = new rvadapter(data);
+                rv.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(),"Error: "+databaseError,Toast.LENGTH_SHORT).show();
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this,add_res.class);
                 startActivity(i);
-            }
-        });
-
-        rv.setAdapter(adapter);
-        rv.addOnScrollListener(new RecyclerView.OnScrollListener(){
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0)
-                    fab.hide();
-                else if (dy < 0)
-                    fab.show();
             }
         });
     }
